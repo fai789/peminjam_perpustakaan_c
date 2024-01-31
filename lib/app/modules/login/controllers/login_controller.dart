@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/constan/endpoin.dart';
+import '../../../data/model/response_login.dart';
 import '../../../data/provider/api_provider.dart';
 import '../../../data/provider/storage_provider.dart';
 import '../../../routes/app_pages.dart';
@@ -50,7 +51,9 @@ class LoginController extends GetxController {
             }));
 
         if (response.statusCode == 200) {
+          final ResponseLogin responseLogin = ResponseLogin.fromJson(response.data);
           await StorageProvider.write(StorageKey.status, "logged");
+          await StorageProvider.write(StorageKey.iduser, responseLogin.data!.id!.toString());
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);
