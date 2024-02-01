@@ -22,7 +22,7 @@ class RegisterView extends GetView<RegisterController> {
                   decoration: InputDecoration(hintText: "Masukan Nama"),
                   validator: (value) {
                     if (value!.length < 2) {
-                      return "Username tidak boleh kosong";
+                      return "Nama tidak boleh kosong";
                     }
                     return null;
                   }),
@@ -31,7 +31,7 @@ class RegisterView extends GetView<RegisterController> {
                   decoration: InputDecoration(hintText: "Masukan UserName"),
                   validator: (value) {
                     if (value!.length < 2) {
-                      return "Password tidak boleh kosong";
+                      return "UserName tidak boleh kosong";
                     }
                     return null;
                   }),
@@ -40,7 +40,7 @@ class RegisterView extends GetView<RegisterController> {
                   decoration: InputDecoration(hintText: "Masukan Telepon"),
                   validator: (value) {
                     if (value!.length < 2) {
-                      return "Username tidak boleh kosong";
+                      return "Telepon tidak boleh kosong";
                     }
                     return null;
                   }),
@@ -49,7 +49,7 @@ class RegisterView extends GetView<RegisterController> {
                   decoration: InputDecoration(hintText: "Masukan Alamat"),
                   validator: (value) {
                     if (value!.length < 2) {
-                      return "Username tidak boleh kosong";
+                      return "Alamat tidak boleh kosong";
                     }
                     return null;
                   }),
@@ -58,7 +58,7 @@ class RegisterView extends GetView<RegisterController> {
                   decoration: InputDecoration(hintText: "Masukan Password"),
                   validator: (value) {
                     if (value!.length < 2) {
-                      return "Username tidak boleh kosong";
+                      return "Password tidak boleh kosong";
                     }
                     return null;
                   }),
