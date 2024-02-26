@@ -13,7 +13,6 @@ class LoginController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  //TODO: Implement LoginController
 
   final loading = false.obs;
 

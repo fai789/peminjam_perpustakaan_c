@@ -75,16 +75,16 @@ class BookView extends GetView<BookController> {
                     itemBuilder: (context, index) {
                       DataBook dataBook = state[index];
                       return Container(
+                        width: 40.0, // Ubah nilai width sesuai kebutuhan
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.0), // Tambahkan borderRadius di sini
-                          // Mungkin Anda juga ingin menambahkan shadow atau dekorasi lainnya
+                          borderRadius: BorderRadius.circular(10.0),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 2), // changes position of shadow
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
