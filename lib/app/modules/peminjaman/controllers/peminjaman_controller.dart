@@ -2,25 +2,22 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../data/constan/endpoin.dart';
-import '../../../data/model/response_getbook.dart';
 import '../../../data/model/response_pinjam.dart';
 import '../../../data/provider/api_provider.dart';
 import '../../../data/provider/storage_provider.dart';
 
-class PeminjamanController extends GetxController with StateMixin<List<DataBook>>{
-  //TODO: Implement PeminjamanController
+class PeminjamanController extends GetxController with StateMixin<List<DataPinjam>>{
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getData();
   }
 
   @override
   void onReady() {
     super.onReady();
-    getData();
-
   }
 
   @override
@@ -28,27 +25,34 @@ class PeminjamanController extends GetxController with StateMixin<List<DataBook>
     super.onClose();
   }
 
-  getData() async {
-    change(null, status:RxStatus.loading());
+  void increment() => count.value++;
+  Future<void> getData() async {
+    //kalau pke void ada nilai baliknya, jadi ngga perlu return
+    // getData(){ kalo ngga pakai void type nya dinamic, di kasih return boleh, tdk juga boleh
+    change(null, status: RxStatus.loading());
     try {
-      final response = await ApiProvider.instance().get("${Endpoint.pinjam}/${StorageProvider.read(StorageKey.iduser)}");
+      final response = await ApiProvider.instance().get("${Endpoint
+          .pinjam}/${StorageProvider.read(StorageKey.iduser)}"); //fungsi await, baris code di bawah menunggu proses await ini selesai. jika tdk pakai, maka codingan di bawah ini dieksekusi barengan
       if (response.statusCode == 200) {
-        final ResponseGetbook responseBook = ResponseGetbook.fromJson(response.data);
-        if(responseBook.data!.isEmpty){
+        final ResponsePinjam responsePinjam = ResponsePinjam.fromJson(response.data);
+        if (responsePinjam.data!.isEmpty) {
+          //apakah data dari response diatas kosong?
+          //jika kosong kita change status nya ke empty
           change(null, status: RxStatus.empty());
-        }else{
-          change(responseBook.data, status: RxStatus.success());
-        } }else{
+        } else {
+          // jika ada kita ubah statusnya menjadi success
+          change(responsePinjam.data, status: RxStatus.success());
+        }
+      } else {
         change(null, status: RxStatus.error("Gagal mengambil data"));
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (e.response?.data != null)
-          change(null, status: RxStatus.error("${e.response?.data['message']}"));
-      } else {
-        change(null, status: RxStatus.error( e.message ?? ""));
-      }
+      //catch di try artinya apakah errornya ada di dio?
+      //jika iya data dibawah ini akan dieksekusi
+      change(null, status: RxStatus.error("Error ${e.message}"));
     } catch (e) {
-      change(null, status: RxStatus.error(e.toString()));
+      //jika tidak, maka perintah di bawah ini yg akan dieksekusi
+      change(null, status: RxStatus.error("Error $e"));
     }
-  }}
+  }
+}

@@ -1,6 +1,6 @@
 /// status : 200
 /// message : "Login Success"
-/// data : {"id":1,"username":"testing","nama":"Romli","telp":"085334","alamat":"Solo","role":"PETUGAS","created_at":"2024-01-09T01:55:16.000000Z","updated_at":"2024-01-09T01:55:16.000000Z"}
+/// data : {"id":1,"username":"testing","nama":"Fai","telp":"085334","alamat":"Solo","role":"PETUGAS","created_at":"2024-02-29T01:31:54.000000Z","updated_at":"2024-02-29T01:31:54.000000Z"}
 
 class ResponseLogin {
   ResponseLogin({
@@ -31,12 +31,12 @@ class ResponseLogin {
 
 /// id : 1
 /// username : "testing"
-/// nama : "Romli"
+/// nama : "Fai"
 /// telp : "085334"
 /// alamat : "Solo"
 /// role : "PETUGAS"
-/// created_at : "2024-01-09T01:55:16.000000Z"
-/// updated_at : "2024-01-09T01:55:16.000000Z"
+/// created_at : "2024-02-29T01:31:54.000000Z"
+/// updated_at : "2024-02-29T01:31:54.000000Z"
 
 class DataLogin {
   DataLogin({

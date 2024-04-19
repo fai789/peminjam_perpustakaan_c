@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -12,12 +13,11 @@ class RegisterView extends GetView<RegisterController> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(80.0),
-          child: Form(
-            key: controller.formKey,
+          child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // Align to the top
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // Logo (Assuming you have an 'assets/logo.png' image)
+                SizedBox(height: 20), // Add a SizedBox for top padding
                 Image.asset(
                   'assets/logo.png',
                   width: 200,
@@ -25,14 +25,14 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 SizedBox(height: 90.0),
                 Text(
-                  "REGISTRASI", // Tambahkan judul di sini
+                  "REGISTRASI",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 40.0, // Sesuaikan ukuran font sesuai kebutuhan Anda
+                    fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 70.0),// Reduce the space between logo and text fields
+                SizedBox(height: 70.0),
                 TextFormField(
                   controller: controller.namaController,
                   decoration: InputDecoration(
@@ -50,7 +50,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15.0), // Reduce the space between text fields
+                SizedBox(height: 15.0),
                 TextFormField(
                   controller: controller.usernameController,
                   decoration: InputDecoration(
@@ -68,7 +68,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15.0), // Reduce the space between text fields
+                SizedBox(height: 15.0),
                 TextFormField(
                   controller: controller.tlpController,
                   decoration: InputDecoration(
@@ -86,7 +86,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15.0), // Reduce the space between text fields
+                SizedBox(height: 15.0),
                 TextFormField(
                   controller: controller.alamatController,
                   decoration: InputDecoration(
@@ -104,9 +104,10 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   },
                 ),
-                SizedBox(height: 15.0), // Reduce the space between text fields
+                SizedBox(height: 15.0),
                 TextFormField(
                   controller: controller.passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Masukan Password",
                     filled: true,
@@ -116,13 +117,13 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   validator: (value) {
-                    if (value!.length < 2) {
+                    if (value!.isEmpty) {
                       return "Password tidak boleh kosong";
                     }
                     return null;
                   },
                 ),
-                SizedBox(height: 16.0), // Maintain space between text field and button
+                SizedBox(height: 16.0),
                 Obx(() => controller.loading.value
                     ? CircularProgressIndicator()
                     : ElevatedButton(
@@ -131,7 +132,11 @@ class RegisterView extends GetView<RegisterController> {
                   },
                   child: Text("Registrasi"),
                 )),
-                Spacer(), // Use Spacer to fill available space and push widgets to the top
+                SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () => Get.toNamed(Routes.LOGIN),
+                    child: Text("Open Login")),
+                SizedBox(height: 20), // Add a SizedBox for bottom padding
               ],
             ),
           ),

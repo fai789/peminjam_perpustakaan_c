@@ -50,22 +50,25 @@ class LoginView extends GetView<LoginController> {
                     return null;
                   }),
                   SizedBox(height: 15.0),
-              TextFormField(
-                  controller: controller.passwordController,
-                  decoration: InputDecoration(
-                      hintText: "Masukan Passoword",
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                  TextFormField(
+                    controller: controller.passwordController,
+                    obscureText: true, // Mengatur untuk menyembunyikan teks
+                    decoration: InputDecoration(
+                      hintText: "Masukan Password",
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                     ),
-                  ),
-                  validator: (value) {
-                    if (value!.length < 2) {
-                      return "Password tidak boleh kosong";
-                    }
-                    return null;
-                  }),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Password tidak boleh kosong";
+                      }
+                      return null;
+                    },
+                  )
+                  ,
                   SizedBox(height: 15.0),
               Obx(() => controller.loading.value
                   ? CircularProgressIndicator()

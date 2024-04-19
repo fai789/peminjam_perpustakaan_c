@@ -16,7 +16,10 @@ class StorageProvider {
   }
 
 
-  static void clearAll() {
+  static void delete(String key) {
+    GetStorage().remove(key);
+  }
+static void clearAll() {
     GetStorage().erase();
   }
 }
